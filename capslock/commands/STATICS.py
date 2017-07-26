@@ -1,0 +1,5 @@
+NAME = "CAPSLOCK"
+AUTHOR = "Cody Beaty, 2017"
+
+PREFIX = "!"
+VERSION = "1.0.0"

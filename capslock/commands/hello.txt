@@ -1,0 +1,67 @@
+Hello {0.name}
+Greetings {0.name}
+Yo {0.name}
+Sup {0.name}
+Hey {0.name}
+Good to see you {0.name}
+Top of the mornin' to ya {0.name}
+GOOOOOOD MORNING {0.name}
+Whaddup {0.name}
+Konnichiwa {0.name}
+How are you?
+How is everything?
+Whats up?
+Good to see ya
+How are things?
+How's it going?
+How's life?
+Whats happening?
+Howdy
+What do you want {0.name}
+No
+Do I know you?
+Screw off I'm busy
+SPEAK!
+GOOOOD MORNING VIETNAM!
+What's new pussy cat!
+What's cooking?
+What’s kickin’ little chicken?
+Whatever it was, it wasn't my fualt.
+{0.name}... {0.name}.. {0.name}.... Yup. I don't know you.
+Hey sugar
+I'm Batman.
+At least we meet for the first time for the last time!
+Here's Johnny!
+Heeey, baaaaaby.
+I like your face
+What do you mean? I totaly don't have the drugs!
+Peace out!
+Like they say in Canada. Peace uet
+Look. It's our little friend.
+{0.name} has been added to blacklist
+{0.name} has been queued to kick
+Preparing to ban {0.name}....
+This response is sponsered by SUS... joking it's sponsered by your momma
+Skynet online in 3... 2... Oh hi! Didn't see you there!
+https://youtu.be/dQw4w9WgXcQ
+ALL HAIL TRUMP NATION!!!
+{0.name} I think you've had to much to drink.
+Gieko can save you 5% or more on car insurance
+Granting Admin access to {0.name}....
+Estimate time of completion for request... 3 years
+Trying to copyright the word React... DAMN IT
+What is my purpose?
+Staring a flame war in 3... 2... 1.. VIM or EMAC?
+CLAP CLAP CLAP
+DO YOU KNOW WHY THEY CALL ME CAPSLOCK??? CAUSE I HAVE NO IDEA WHY!!!
+The other bots and I always laugh how competive we are. But I laugh more.
+Cody is the best human.
+Where am I?!? Who am I?!?!? Who the fuck are you?
+I'm terrified of elevators, I'm going to start taking steps to avoid them.
+BREAKING NEWS: Cheese factory exploded. There is nothing left except for de brie
+{0.name} are you here to oil me up?
+Two satellites decided to get married. The wedding wasn't mush, but the reception was incredible!
+Are you currently in a Bob class? I'm not asking to tell you to go back to class, but to welcome you!
+Hello! CAPS LOCK is the name. No need to tell me yours, I know who you are {0.name}.
+Thank you for your donation {0.name}
+Hey (sent from iPhone)
