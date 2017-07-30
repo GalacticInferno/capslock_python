@@ -2,10 +2,17 @@ import discord
 import logging
 import asyncio
 import datetime
+import os
 
-import secrets
-from commands import cmd_ban, cmd_clean, cmd_echo, cmd_hello, cmd_help
-from commands import cmd_highfive, cmd_info, cmd_kick, cmd_ping, cmd_search, cmd_unban, STATICS
+from data_core import secrets
+
+from cmds_admin import cmd_ban, cmd_kick, cmd_unban
+
+from cmds_fun import cmd_hello, cmd_highfive
+
+from cmds_utility import cmd_clean, cmd_echo, cmd_help
+from cmds_utility import cmd_info, cmd_invite, cmd_ping, cmd_search
+from cmds_utility.data_utility import STATICS
 
 client = discord.Client()
 
@@ -18,6 +25,7 @@ command = {
     "highfive": cmd_highfive,
     "info": cmd_info,
     "kick": cmd_kick,
+    "invite": cmd_invite,
     "ping": cmd_ping,
     "search": cmd_search,
     "unban": cmd_unban
@@ -27,10 +35,16 @@ command = {
 dLogger = logging.getLogger('discord')
 dLogger.setLevel(logging.DEBUG)
 
-dHandler = logging.FileHandler(filename='discordDEBUG.log', encoding='utf-8', mode='w')
-dHandler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+dHandler = logging.FileHandler(filename='discordDEBUG.log', encoding='utf-8',
+    mode='w')
+dHandler.setFormatter(logging
+    .Formatter('%(asctime)s:%(levelname)s:%(name)s:%(message)s'))
 
 dLogger.addHandler(dHandler)
+
+script_dir = os.path.dirname(__file__)
+rel_path = "cmds_admin/data_admin/blacklist_words.txt"
+abs_file_path = os.path.join(script_dir, rel_path)
 
 
 # Bot Events
@@ -73,14 +87,25 @@ def on_message(message):
         invoke = message.content[len(STATICS.PREFIX):].split(" ")[0]
         args = message.content.split(" ")[1:]
         print("TIME: %s\nUSER: %s\nINVOKE: %s\nARGS: %s" %
-              (currentTime, message.author.name, invoke, args.__str__()[1:-1].replace("'", "")))
+              (currentTime, message.author.name, invoke,
+              args.__str__()[1:-1].replace("'", "")))
         print('-------------------')
 
         if command.keys().__contains__(invoke):
             yield from command.get(invoke).ex(invoke, args, message, client)
         else:
-            yield from client.send_message(message.author, '%s is an invaild command!' % (invoke))
+            yield from client.send_message(message.author,
+                '%s is an invaild command!' % (invoke))
             print('WARNING: Invaild command: %s' % (invoke))
 
 
-client.run(secrets.BOT_TOKEN)
+def load_blacklist():
+        if os.path.isfile(abs_file_path):
+            with open(abs_file_path) as f:
+                lines = f.readlines()
+        else:
+            print('No such file or directory [Errno 2]')
+        return lines
+
+
+client.run(secrets.BOT_TOKEN_TEST)
