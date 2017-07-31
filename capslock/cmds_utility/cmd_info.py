@@ -1,4 +1,4 @@
-from cmds_utility.data_utility import STATICS
+from cmds_utility.data_utility import STATICS, alias_utility
 
 # Bot Info
 name = STATICS.NAME
@@ -14,7 +14,7 @@ def ex(invoke, args, message, client):
     if len(args) > 0:
         sub_invoke = args[0].__str__()[0:].replace("'", "")
         print(sub_invoke, ' ', args)
-        if sub_invoke in ('CAPSLOCK', 'capslock'):
+        if sub_invoke in alias_utility.bot_alias:
             yield from client.send_message(message.author, botInfo)
     else:
         yield from client.send_message(message.author, '%s is missing args!'

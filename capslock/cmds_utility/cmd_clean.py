@@ -1,11 +1,6 @@
-sub_invoke = 'null'
+from cmds_utility.data_utility import alias_utility
 
-bot_alias = {
-    "bot",
-    "capslock",
-    "cap",
-    "cl"
-}
+sub_invoke = 'null'
 
 
 def ex(invoke, args, message, client):
@@ -15,7 +10,7 @@ def ex(invoke, args, message, client):
         amount = int(args[1].replace("'", ""))
         print(sub_invoke, ' ', args)
 
-        if sub_invoke in bot_alias:
+        if sub_invoke in alias_utility.bot_alias:
             deleted = yield from client.purge_from(message.channel,
                 limit=amount, check=is_bot)
             yield from client.send_message(message.channel,

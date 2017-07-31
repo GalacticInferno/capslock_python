@@ -3,6 +3,14 @@
 def ex(invoke, args, message, client):
     member = message.mentions[0]
 
+    if member == '@CAPS LOCK#4714' and message.author == \
+"@GalacticInferno#3303":
+        yield from client.send_message(message.channel,
+            'DO YOU HATE ME DAD! HUH! DO YOU HATE ME THAT MUCH!')
+    elif member == '@CAPS LOCK#4714':
+        yield from client.send_message(message.channel,
+            'Who dares try and kick this amazingly wonderful bot')
+
     if len(args) > 0:
         yield from client.kick(member)
         if len(args) > 1:

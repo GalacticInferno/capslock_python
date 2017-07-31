@@ -70,3 +70,16 @@ Are you currently in a Bob class? I'm not asking to tell you to go back to class
 Hello! CAPS LOCK is the name. No need to tell me yours, I know who you are {0.name}.
 Thank you for your donation {0.name}
 Hey (sent from iPhone)
+#
+# Quotes from CL4P-TP aka Clap-Trap
+#
+Hey everybody! Check out my package!
+Let's get this party started!
+Glitching weirdness is a term of endearment, right?
+Recompiling my combat code!
+This time it'll be awesome, I promise!
+Look out everybody! Things are about to get awesome!
+Can I shoot something now? Or climb some stairs? SOMETHING exciting?
+Times like these, I really start to question the meaning of my existence. Then I get distra-hey! What's this? This looks cool!
+Oh. My. God. What if I'm like... a fish? And, if I'm not moving... I stop breathing? AND THEN I'LL DIE! HELP ME! HELP MEEEEE HEE HEE HEEE! HHHHHHHELP!
+Ahem, ahem. What's going on? Did I break something?

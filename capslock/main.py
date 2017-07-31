@@ -3,6 +3,7 @@ import logging
 import asyncio
 import datetime
 import os
+import random
 
 from data_core import secrets
 
@@ -43,7 +44,7 @@ dHandler.setFormatter(logging
 dLogger.addHandler(dHandler)
 
 script_dir = os.path.dirname(__file__)
-rel_path = "cmds_admin/data_admin/blacklist_words.txt"
+rel_path = "data_core/idle_responses.txt"
 abs_file_path = os.path.join(script_dir, rel_path)
 
 
@@ -58,18 +59,40 @@ def on_ready():
     print('-------------------')
 
 
+@asyncio.coroutine
+def background_loop():
+    print('Background loop starting...')
+    yield from client.wait_until_ready()
+    if os.path.isfile(abs_file_path):
+        while not client.is_closed:
+            rand_time = random.randint(0, 3600)
+            with open(abs_file_path) as f:
+                    lines = f.readlines()
+                    rand_line = is_comment(lines)
+                    print(rand_line)
+                    yield from client.send_message(
+                        client.get_channel(secrets.LOBBY_ID_TEST),
+                        rand_line)
+            yield from asyncio.sleep(rand_time)
+    else:
+        print('No such file or directory [Errno 2]')
+
+
 @client.event
 @asyncio.coroutine
 def on_member_join(member: discord.Member):
     currentTime = datetime.datetime.now()
     print(currentTime, ': {0.name} joined the server'.format(member))
+    yield from client.send_message(member.name, 'Welcome to the CSA Discord!'
+        'Im CAPSLOCK, if you need anything or want to know what I can do'
+        'just let me know with !help')
 
 
 @client.event
 @asyncio.coroutine
 def on_member_remove(member: discord.Member):
     currentTime = datetime.datetime.now()
-    print(currentTime, ': {0.name} left the server'.format(member))
+    print(currentTime, ': {0.name} was removed from the server'.format(member))
 
 
 @client.event
@@ -82,15 +105,15 @@ def on_member_leave(member: discord.Member):
 @client.event
 @asyncio.coroutine
 def on_message(message):
+    currentTime = datetime.datetime.now()
+    is_twitter(message, client)
     if message.content.startswith(STATICS.PREFIX):
-        currentTime = datetime.datetime.now()
         invoke = message.content[len(STATICS.PREFIX):].split(" ")[0]
         args = message.content.split(" ")[1:]
         print("TIME: %s\nUSER: %s\nINVOKE: %s\nARGS: %s" %
               (currentTime, message.author.name, invoke,
               args.__str__()[1:-1].replace("'", "")))
         print('-------------------')
-
         if command.keys().__contains__(invoke):
             yield from command.get(invoke).ex(invoke, args, message, client)
         else:
@@ -99,13 +122,19 @@ def on_message(message):
             print('WARNING: Invaild command: %s' % (invoke))
 
 
-def load_blacklist():
-        if os.path.isfile(abs_file_path):
-            with open(abs_file_path) as f:
-                lines = f.readlines()
-        else:
-            print('No such file or directory [Errno 2]')
-        return lines
+def is_twitter(message, client):
+    if message.server == 287455376994205716:
+        client.add_reaction(message, ':thumbsup:')
+    return
 
 
+def is_comment(_lines):
+    while True:
+        rand_line = random.choice(_lines)
+        if not rand_line.startswith('#'):
+            break
+    return rand_line
+
+
+client.loop.create_task(background_loop())
 client.run(secrets.BOT_TOKEN_TEST)
