@@ -1,5 +1,5 @@
 import os
-import random
+from random import choice
 
 script_dir = os.path.dirname(__file__)
 rel_path = "data_fun/hello_response.txt"
@@ -21,7 +21,7 @@ def ex(invoke, args, message, client):
 
 def is_comment(_lines):
     while True:
-        rand_line = random.choice(_lines)
+        rand_line = choice(_lines)
         if not rand_line.startswith('#'):
             break
     return rand_line

@@ -1,16 +1,13 @@
 import discord
 import logging
 import asyncio
-import datetime
 import os
-import random
 
+from datetime import datetime
+from random import randint, choice
 from data_core import secrets
-
 from cmds_admin import cmd_ban, cmd_kick, cmd_unban
-
-from cmds_fun import cmd_hello, cmd_highfive
-
+from cmds_fun import cmd_hello, cmd_highfive, cmd_roll
 from cmds_utility import cmd_clean, cmd_echo, cmd_help
 from cmds_utility import cmd_info, cmd_invite, cmd_ping, cmd_search
 from cmds_utility.data_utility import STATICS
@@ -28,6 +25,7 @@ command = {
     "kick": cmd_kick,
     "invite": cmd_invite,
     "ping": cmd_ping,
+    "roll": cmd_roll,
     "search": cmd_search,
     "unban": cmd_unban
 }
@@ -47,6 +45,10 @@ script_dir = os.path.dirname(__file__)
 rel_path = "data_core/idle_responses.txt"
 abs_file_path = os.path.join(script_dir, rel_path)
 
+min_hours = 2
+max_hours = 6
+conversion = 3600
+
 
 # Bot Events
 @client.event
@@ -65,7 +67,9 @@ def background_loop():
     yield from client.wait_until_ready()
     if os.path.isfile(abs_file_path):
         while not client.is_closed:
-            rand_time = random.randint(0, 3600)
+            rand_time = randint((min_hours * conversion),
+                (max_hours * conversion))
+            yield from asyncio.sleep(rand_time)
             with open(abs_file_path) as f:
                     lines = f.readlines()
                     rand_line = is_comment(lines)
@@ -73,7 +77,6 @@ def background_loop():
                     yield from client.send_message(
                         client.get_channel(secrets.LOBBY_ID_TEST),
                         rand_line)
-            yield from asyncio.sleep(rand_time)
     else:
         print('No such file or directory [Errno 2]')
 
@@ -81,7 +84,7 @@ def background_loop():
 @client.event
 @asyncio.coroutine
 def on_member_join(member: discord.Member):
-    currentTime = datetime.datetime.now()
+    currentTime = datetime.now()
     print(currentTime, ': {0.name} joined the server'.format(member))
     yield from client.send_message(member.name, 'Welcome to the CSA Discord!'
         'Im CAPSLOCK, if you need anything or want to know what I can do'
@@ -91,21 +94,21 @@ def on_member_join(member: discord.Member):
 @client.event
 @asyncio.coroutine
 def on_member_remove(member: discord.Member):
-    currentTime = datetime.datetime.now()
+    currentTime = datetime.now()
     print(currentTime, ': {0.name} was removed from the server'.format(member))
 
 
 @client.event
 @asyncio.coroutine
 def on_member_leave(member: discord.Member):
-    currentTime = datetime.datetime.now()
+    currentTime = datetime.now()
     print(currentTime, ': {0.name} left the server'.format(member))
 
 
 @client.event
 @asyncio.coroutine
 def on_message(message):
-    currentTime = datetime.datetime.now()
+    currentTime = datetime.now()
     is_twitter(message, client)
     if message.content.startswith(STATICS.PREFIX):
         invoke = message.content[len(STATICS.PREFIX):].split(" ")[0]
@@ -130,7 +133,7 @@ def is_twitter(message, client):
 
 def is_comment(_lines):
     while True:
-        rand_line = random.choice(_lines)
+        rand_line = choice(_lines)
         if not rand_line.startswith('#'):
             break
     return rand_line

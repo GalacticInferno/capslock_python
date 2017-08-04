@@ -17,6 +17,7 @@ Fun command list:
 
 * !hello
 * !highfive
+* !roll
 
 Utility command list:
 * !clean
@@ -31,6 +32,6 @@ Utility command list:
 A current to-do list of possible features, commands and code re-work
 
 * Clean up imports
-* re-align the content within the help embedded message
+* [DONE] re-align the content within the help embedded message
 * Self-Update from the master branch of Git
 * Add more useful docs to !search
