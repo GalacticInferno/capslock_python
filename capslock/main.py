@@ -45,10 +45,6 @@ script_dir = os.path.dirname(__file__)
 rel_path = "data_core/idle_responses.txt"
 abs_file_path = os.path.join(script_dir, rel_path)
 
-min_hours = 2
-max_hours = 6
-conversion = 3600
-
 
 # Bot Events
 @client.event
@@ -67,8 +63,7 @@ def background_loop():
     yield from client.wait_until_ready()
     if os.path.isfile(abs_file_path):
         while not client.is_closed:
-            rand_time = randint((min_hours * conversion),
-                (max_hours * conversion))
+            rand_time = randint(7200, 21600)
             yield from asyncio.sleep(rand_time)
             with open(abs_file_path) as f:
                     lines = f.readlines()

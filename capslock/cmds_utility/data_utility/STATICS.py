@@ -8,3 +8,5 @@ INVITE_BOT = 'https://discordapp.com/api/oauth2/authorize?client_id=' \
     '304011285174157322&scope=bot&permissions=0'
 
 INVITE_SERVER = 'https://discord.io/csaufv'
+
+GIT_LINK = 'https://github.com/GalacticInferno/capslock_python'

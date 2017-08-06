@@ -6,13 +6,13 @@ def ex(invoke, args, message, client):
 
     embed = discord.Embed(title="CAPSLOCK HELP",
                                 colour=discord.Colour(0x23cace),
-                                url="https://discordapp.com",
+                                url=STATICS.GIT_LINK,
                                 description=("```\n{0} - dev```")
                                 .format(STATICS.VERSION))
 
     embed.set_image(url="https://goo.gl/LJeASG")
     embed.set_author(name="Cody Beaty",
-        url="https://discordapp.com",
+        url=STATICS.GIT_LINK,
         icon_url="https://goo.gl/py664U")
     embed.set_footer(text="Hello World!",
         icon_url="https://goo.gl/Pe7RzK")
